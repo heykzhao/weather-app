@@ -1,7 +1,19 @@
 const APIKey = process.env.REACT_APP_API_KEY;
 console.log(APIKey);
 
-// api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+async function getCurrentCity(city) {
+  try {
+    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`);
+    const data = await response.json();
+    const currentCityCoord = {
+      lon: data.coord.lon,
+      lat: data.coord.lat,
+    };
+    return currentCityCoord;
+  } catch (error) {
+    return console.log(error);
+  }
+}
 
 async function getCurrentWeather() {
   try {
