@@ -14,7 +14,18 @@ async function getCurrentCity(city) {
   }
 }
 
-export default async function getCurrentCityWeather(city) {
+async function getWeatherArray(obj) {
+  const weatherArray = [];
+  for (let i = 0; i < obj.length; i += 1) {
+    const arrayItem = {
+      hour: obj[i].dt,
+    };
+    weatherArray.push(arrayItem);
+  }
+  return weatherArray;
+}
+
+export default async function getCurrentCityWeather(city, units) {
   try {
     const currentCityCoord = await getCurrentCity(city);
     const { lat, lon } = currentCityCoord;
