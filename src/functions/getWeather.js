@@ -30,12 +30,32 @@ export default async function getCurrentCityWeather(city, units) {
     const currentCityCoord = await getCurrentCity(city);
     const { lat, lon } = currentCityCoord;
 
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${APIKey}`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=minutely&appid=${APIKey}`);
     const data = await response.json();
-    const currentCityWeather = {
-      currentTemp: data.current.temp,
+
+    const { current, hourly, daily } = data;
+
+    const currentWeather = {
+      currentTime: new Date(current.dt * 1000),
+      currentTemp: current.temp,
+      currentFeelsLike: current.feels_like,
+      currentHumidity: current.humidity,
+      currentWindSpeed: current.wind_speed,
+      currentDescription: current.weather.main,
+      currentDetails: current.weather.description,
     };
-    return currentCityWeather;
+
+    const hourlyWeather = await getWeatherArray(hourly);
+
+    const dailyWeather = await getWeatherArray(daily);
+
+    const allWeather = {
+      currentWeather,
+      hourlyWeather,
+      dailyWeather,
+    };
+
+    return allWeather;
   } catch (error) {
     return console.log(error);
   }
