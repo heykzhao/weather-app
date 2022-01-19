@@ -1,5 +1,4 @@
 const APIKey = process.env.REACT_APP_API_KEY;
-console.log(APIKey);
 
 async function getCurrentCity(city) {
   try {
@@ -30,5 +29,3 @@ export default async function getCurrentCityWeather(city) {
     return console.log(error);
   }
 }
-
-export default getCurrentWeather;
