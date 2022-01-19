@@ -1,16 +1,23 @@
 import React from 'react';
-import getCurrentCityWeather from './functions/getWeather';
+import returnCoordinates from './functions/getCurrentLocation';
+import { getCurrentCityWeather, getCurrentCoordinatesWeather } from './functions/getWeather';
 
 function App() {
-  const consoleLogClevelandWeather = async () => {
-    const clevelandWeather = await getCurrentCityWeather('Cleveland', 'metric');
-    console.log(clevelandWeather);
-  };
+  async function defaultLoad() {
+    try {
+      const { lat, lon } = await returnCoordinates();
+      const browserLocationWeather = await getCurrentCoordinatesWeather(lat, lon, 'metric');
+      console.log(browserLocationWeather);
+    } catch {
+      const chicagoDefaultWeather = await getCurrentCityWeather('Chicago', 'metric');
+      console.log(chicagoDefaultWeather);
+    }
+  }
 
-  consoleLogClevelandWeather();
+  defaultLoad();
 
   return (
-    <div className="app-container">Hey</div>
+    <div className="app-container">Test</div>
   );
 }
 
