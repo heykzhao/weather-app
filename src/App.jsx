@@ -3,7 +3,7 @@ import getCurrentCityWeather from './functions/getWeather';
 
 function App() {
   const consoleLogClevelandWeather = async () => {
-    const clevelandWeather = await getCurrentCityWeather('Cleveland');
+    const clevelandWeather = await getCurrentCityWeather('Cleveland', 'metric');
     console.log(clevelandWeather);
   };
 
