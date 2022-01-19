@@ -15,13 +15,19 @@ async function getCurrentCity(city) {
   }
 }
 
-async function getCurrentWeather() {
+export default async function getCurrentCityWeather(city) {
   try {
-    const response = await fetch(`api.openweathermap.org/data/2.5/weather?q={Cleveland}&appid=${APIKey}`);
+    const currentCityCoord = await getCurrentCity(city);
+    const { lat, lon } = currentCityCoord;
+
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${APIKey}`);
     const data = await response.json();
-    console.log(data);
+    const currentCityWeather = {
+      currentTemp: data.current.temp,
+    };
+    return currentCityWeather;
   } catch (error) {
-    console.log('Error');
+    return console.log(error);
   }
 }
 
