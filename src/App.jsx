@@ -1,12 +1,16 @@
 import React from 'react';
-import getWeather from './functions/getWeather';
+import getCurrentCityWeather from './functions/getWeather';
 
 function App() {
-  getWeather();
+  const consoleLogClevelandWeather = async () => {
+    const clevelandWeather = await getCurrentCityWeather('Cleveland');
+    console.log(clevelandWeather);
+  };
+
+  consoleLogClevelandWeather();
+
   return (
-    <div className="app-container">
-      Hey
-    </div>
+    <div className="app-container">Hey</div>
   );
 }
 
