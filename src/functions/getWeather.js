@@ -10,7 +10,7 @@ export async function getCityCoordinates(city) {
     };
     return currentCityCoord;
   } catch (error) {
-    return console.log(error);
+    return console.warn(error);
   }
 }
 
@@ -57,6 +57,7 @@ export async function getCurrentCoordinatesWeather(lat, lon, units) {
       currentWindSpeed: current.wind_speed,
       currentDescription: current.weather[0].main,
       currentDetails: current.weather[0].description,
+      currentIcon: current.weather[0].icon,
     };
 
     const hourlyWeather = await getWeatherArrayHourly(hourly);
@@ -71,6 +72,6 @@ export async function getCurrentCoordinatesWeather(lat, lon, units) {
 
     return allWeather;
   } catch (error) {
-    return console.log(error);
+    return console.warn(error);
   }
 }
