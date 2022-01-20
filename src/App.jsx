@@ -1,6 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 
+// Import styles
+import './styles/Reset.css';
+import './styles/App.css';
+
 // Import components
 import Loading from './components/Loading';
 import Header from './components/Header';
@@ -42,15 +46,22 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <Header />
       {weather === emptyWeatherArray
-        ? <Loading />
+        ? (
+          <div className="data-loading">
+            <Header />
+            <Loading />
+          </div>
+        )
         : (
           <div className="data-loaded">
-            <CurrentWeather
-              item={weather.currentWeather}
-              city={city}
-            />
+            <div className="header-current">
+              <Header />
+              <CurrentWeather
+                item={weather.currentWeather}
+                city={city}
+              />
+            </div>
             <HourlyWeather />
             <DailyWeather />
           </div>
