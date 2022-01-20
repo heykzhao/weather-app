@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import '../styles/CurrentWeather.css';
 
 export default function CurrentWeather({ item, city }) {
   const {

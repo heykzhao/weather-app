@@ -1,0 +1,5 @@
+.current-weather-container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
