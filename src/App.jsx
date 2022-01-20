@@ -12,15 +12,22 @@ import Footer from './components/Footer';
 // Import functions
 import returnCoordinates from './functions/getCurrentLocation';
 import { getCityCoordinates, getCurrentCoordinatesWeather } from './functions/getWeather';
+import getCityNameByCoordinates from './functions/getCityName';
 import emptyWeatherArray from './functions/emptyWeatherArray.json';
 
 export default function App() {
   const [weather, setWeather] = useState(emptyWeatherArray);
   const [units, setUnits] = useState('imperial');
+  const [city, setCity] = useState('');
 
   async function getWeatherAtCurrentLocation() {
     try {
       const currentCoordinates = await returnCoordinates();
+      const currentCityName = await getCityNameByCoordinates(
+        currentCoordinates.lat,
+        currentCoordinates.lon,
+      );
+      setCity(currentCityName);
       setWeather(await getCurrentCoordinatesWeather(
         currentCoordinates.lat,
         currentCoordinates.lon,
@@ -35,13 +42,19 @@ export default function App() {
 
   return (
     <div className="app-container">
-      {weather === emptyWeatherArray ? <Loading /> : ''}
       <Header />
-      <CurrentWeather
-        item={weather.currentWeather}
-      />
-      <HourlyWeather />
-      <DailyWeather />
+      {weather === emptyWeatherArray
+        ? <Loading />
+        : (
+          <div className="data-loaded">
+            <CurrentWeather
+              item={weather.currentWeather}
+              city={city}
+            />
+            <HourlyWeather />
+            <DailyWeather />
+          </div>
+        )}
       <Footer />
     </div>
   );
