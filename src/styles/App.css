@@ -1,0 +1,9 @@
+.data-loading {
+  background: rgb(205,101,235);
+  background: linear-gradient(45deg, rgba(205,101,235,1) 0%, rgba(82,82,255,1) 56%, rgba(0,236,255,1) 100%);
+}
+.header-current {
+  background: rgb(205,101,235);
+  background: linear-gradient(45deg, rgba(205,101,235,1) 0%, rgba(82,82,255,1) 56%, rgba(0,236,255,1) 100%);
+  background-repeat: no-repeat;
+}
