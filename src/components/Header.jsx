@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Header.css';
 import sweaterIcon from '../images/sweater.png';
 import searchIcon from '../images/search.png';
+import currentLocationIcon from '../images/current-location.png';
 
 export default function Header() {
   return (
@@ -25,6 +26,12 @@ export default function Header() {
       <div className="search-units-container">
         <div className="search-container">
           <div className="search-container--box">
+            <img
+              alt="Current location icon by www.wishforge.games on freeicons.io"
+              src={currentLocationIcon}
+              className="current-location-icon"
+              title="Get current location."
+            />
             <input
               type="text"
               placeholder="Search City"
