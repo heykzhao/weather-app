@@ -2,11 +2,11 @@ const APIKey = process.env.REACT_APP_API_KEY;
 
 export async function getCityCoordinates(city) {
   try {
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`);
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${APIKey}`);
     const data = await response.json();
     const currentCityCoord = {
-      lon: data.coord.lon,
-      lat: data.coord.lat,
+      lat: data[0].lat,
+      lon: data[0].lon,
     };
     return currentCityCoord;
   } catch (error) {
