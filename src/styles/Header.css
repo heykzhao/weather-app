@@ -87,7 +87,7 @@ input:focus, textarea:focus, select:focus{
 .units-container {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   width: 20%;
   margin-right: 20px;
   font-size: 16px;
@@ -95,6 +95,7 @@ input:focus, textarea:focus, select:focus{
 }
 .unit-selector {
   cursor: pointer;
+  background-color: transparent;
 }
 .unit-selector-separation {
   margin: 0px 5px 0px 7px;
@@ -139,9 +140,13 @@ input:focus, textarea:focus, select:focus{
 .search--button > img {
   height: 25px;
 }
-.current-location-icon {
-  height: 20px;
+.get-current-location {
+  background-color: transparent;
   cursor: pointer;
+}
+.current-location-icon {
+  background-color: transparent;
+  height: 20px;
 }
 
 @media only screen and (max-width: 700px) {
