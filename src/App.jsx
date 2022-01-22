@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 
@@ -21,32 +22,85 @@ import emptyWeatherArray from './functions/emptyWeatherArray.json';
 
 export default function App() {
   const [weather, setWeather] = useState(emptyWeatherArray);
-  const [units, setUnits] = useState('imperial');
   const [city, setCity] = useState('');
+  const [coordinates, setCoordinates] = useState('');
+  const [units, setUnit] = useState('imperial');
+  const [loading, setLoading] = useState(true);
 
-  async function getWeatherAtCurrentLocation() {
+  async function getCurrentLocationWeather() {
     try {
+      setLoading(true);
       const currentCoordinates = await returnCoordinates();
       const currentCityName = await getCityNameByCoordinates(
         currentCoordinates.lat,
         currentCoordinates.lon,
       );
-      setCity(currentCityName);
-      setWeather(await getCurrentCoordinatesWeather(
+      const retreiveWeather = await getCurrentCoordinatesWeather(
         currentCoordinates.lat,
         currentCoordinates.lon,
         units,
-      ));
+      );
+      setWeather(retreiveWeather);
+      setCoordinates({
+        lat: currentCoordinates.lat,
+        lon: currentCoordinates.lon,
+      });
+      setCity(currentCityName);
+      setLoading(false);
+    } catch {
+      const currentCoordinates = await getCityCoordinates('Chicago');
+      const retreiveWeather = await getCurrentCoordinatesWeather(
+        currentCoordinates.lat,
+        currentCoordinates.lon,
+        units,
+      );
+      setWeather(retreiveWeather);
+      setCoordinates({
+        lat: currentCoordinates.lat,
+        lon: currentCoordinates.lon,
+      });
+      setCity('Chicago, Illinois US');
+      setLoading(false);
+    }
+  }
+  useState(() => getCurrentLocationWeather(), []);
+
+  async function changeUnits(e) {
+    try {
+      console.log(e.target.name);
+      const buttonName = e.target.name;
+      let selectedUnit = '';
+      if (buttonName === 'celsius') {
+        setLoading(true);
+        setUnit('metric');
+        selectedUnit = 'metric';
+        const retreiveNewUnitsWeather = await getCurrentCoordinatesWeather(
+          coordinates.lat,
+          coordinates.lon,
+          selectedUnit,
+        );
+        setWeather(retreiveNewUnitsWeather);
+        setLoading(false);
+      } else if (buttonName === 'fahrenheit') {
+        setLoading(true);
+        setUnit('imperial');
+        selectedUnit = 'imperial';
+        const retreiveNewUnitsWeather = await getCurrentCoordinatesWeather(
+          coordinates.lat,
+          coordinates.lon,
+          selectedUnit,
+        );
+        setLoading(false);
+        setWeather(retreiveNewUnitsWeather);
+      }
     } catch (error) {
-      console.warn(error);
+      console.log(error);
     }
   }
 
-  useState(() => getWeatherAtCurrentLocation(), []);
-
   return (
     <div className="app-container">
-      {weather === emptyWeatherArray
+      {loading === true
         ? (
           <div className="data-loading">
             <Header />
@@ -56,10 +110,14 @@ export default function App() {
         : (
           <div className="data-loaded">
             <div className="header-current">
-              <Header />
+              <Header
+                getCurrentLocationWeather={getCurrentLocationWeather}
+                changeUnits={changeUnits}
+              />
               <CurrentWeather
                 item={weather.currentWeather}
                 city={city}
+                units={units}
               />
             </div>
             <HourlyWeather />

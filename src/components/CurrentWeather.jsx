@@ -5,7 +5,7 @@
 import React from 'react';
 import '../styles/CurrentWeather.css';
 
-export default function CurrentWeather({ item, city }) {
+export default function CurrentWeather({ item, city, units }) {
   const {
     currentDescription,
     currentDetails,
@@ -16,7 +16,15 @@ export default function CurrentWeather({ item, city }) {
     currentWindSpeed,
     currentIcon,
   } = item;
-
+  let tempUnitsToDisplay = '';
+  let windSpeedUnitsToDisplay = '';
+  if (units === 'metric') {
+    tempUnitsToDisplay = '°C';
+    windSpeedUnitsToDisplay = 'meters/sec';
+  } else if (units === 'imperial') {
+    tempUnitsToDisplay = '°F';
+    windSpeedUnitsToDisplay = 'miles/hour';
+  }
   const date = new Date(currentTime);
   const dayYearMonthDate = date.toLocaleString('en-us', {
     weekday: 'long', year: 'numeric', month: 'long', date: 'numeric',
@@ -31,16 +39,16 @@ export default function CurrentWeather({ item, city }) {
     <div className="current-weather-container">
       <div className="current-time">Last updated at: {dayYearMonthDate} at {time}</div>
       <div className="city-name">{city}</div>
-      <div className="cw-temperature">{currentTemp}</div>
-      <div className="cw-feels-like">{currentFeelsLike}</div>
-      <div className="cw-description">{currentDescription}</div>
-      <div className="cw-details">{currentDetails}</div>
-      <div className="cw-humidity">{currentHumidity}</div>
-      <div className="cw-wind-speed">{currentWindSpeed}</div>
       <img
         alt="Current weather icon"
         src={iconSource}
       />
+      <div className="cw-description">{currentDescription}</div>
+      <div className="cw-details">{currentDetails}</div>
+      <div className="cw-temperature">{currentTemp}{tempUnitsToDisplay}</div>
+      <div className="cw-feels-like">{currentFeelsLike}{tempUnitsToDisplay}</div>
+      <div className="cw-humidity">{currentHumidity}%</div>
+      <div className="cw-wind-speed">{currentWindSpeed} {windSpeedUnitsToDisplay}</div>
     </div>
   );
 }

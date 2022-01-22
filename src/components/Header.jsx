@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import '../styles/Header.css';
 import sweaterIcon from '../images/sweater.png';
 import searchIcon from '../images/search.png';
 import currentLocationIcon from '../images/current-location.png';
 
-export default function Header() {
+export default function Header({ getCurrentLocationWeather, changeUnits }) {
   return (
     <div className="header-container">
       <div className="logo-container">
@@ -26,13 +27,20 @@ export default function Header() {
       <div className="search-units-container">
         <div className="search-container">
           <div className="search-container--box">
-            <img
-              alt="Current location icon by www.wishforge.games on freeicons.io"
-              src={currentLocationIcon}
-              className="current-location-icon"
-              title="Get current location."
-            />
+            <button
+              type="button"
+              className="get-current-location"
+              onClick={getCurrentLocationWeather}
+            >
+              <img
+                alt="Current location icon by www.wishforge.games on freeicons.io"
+                src={currentLocationIcon}
+                className="current-location-icon"
+                title="Get current location."
+              />
+            </button>
             <input
+              name="search-city"
               type="text"
               placeholder="Search City"
               className="search--input"
@@ -46,9 +54,23 @@ export default function Header() {
           </div>
         </div>
         <div className="units-container">
-          <div className="unit-selector fahrenheit">°F</div>
+          <button
+            type="button"
+            name="fahrenheit"
+            className="unit-selector fahrenheit"
+            onClick={changeUnits}
+          >
+            °F
+          </button>
           <div className="unit-selector-separation">/</div>
-          <div className="unit-selector celsius"> °C</div>
+          <button
+            type="button"
+            name="celsius"
+            className="unit-selector celsius"
+            onClick={changeUnits}
+          >
+            °C
+          </button>
         </div>
       </div>
     </div>
