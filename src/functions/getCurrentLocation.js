@@ -1,7 +1,11 @@
 function getCurrentPositionPromise() {
+  const options = {
+    enableHighAccuracy: false,
+    maximumAge: 0,
+  };
   // eslint-disable-next-line no-promise-executor-return
   return new Promise((resolve, reject) => navigator
-    .geolocation.getCurrentPosition(resolve, reject));
+    .geolocation.getCurrentPosition(resolve, reject, options));
 }
 
 async function returnCoordinates() {
