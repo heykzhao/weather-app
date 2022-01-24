@@ -1,9 +1,37 @@
+html,
+body, #root, .app-container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 .data-loading {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   background: rgb(205,101,235);
   background: linear-gradient(45deg, rgba(205,101,235,1) 0%, rgba(82,82,255,1) 56%, rgba(0,236,255,1) 100%);
 }
-.header-current {
+.loading-spinner {
+  flex: 1;
+}
+.data-loaded {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: rgb(205,101,235);
+  background: linear-gradient(45deg, rgba(205,101,235,1) 0%, rgba(82,82,255,1) 56%, rgba(0,236,255,1) 100%); 
+}
+.non-current {
+  flex: 1;
+}
+.error-loading {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   background: rgb(205,101,235);
   background: linear-gradient(45deg, rgba(205,101,235,1) 0%, rgba(82,82,255,1) 56%, rgba(0,236,255,1) 100%);
   background-repeat: no-repeat;
+}
+.error-message {
+  flex: 1;
 }
