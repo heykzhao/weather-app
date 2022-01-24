@@ -1,5 +1,22 @@
 .current-weather-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cw-card {
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 80%;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
+  border: 2px black solid;
+  border-radius: 8px;
+  background-color: white;
+  margin: 10px;
+}
+.cw {
+  display: flex;
+}
+.cw-icon {
+  width: 30px;
 }

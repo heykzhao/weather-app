@@ -37,18 +37,21 @@ export default function CurrentWeather({ item, city, units }) {
 
   return (
     <div className="current-weather-container">
-      <div className="current-time">Last updated at: {dayYearMonthDate} at {time}</div>
-      <div className="city-name">{city}</div>
-      <img
-        alt="Current weather icon"
-        src={iconSource}
-      />
-      <div className="cw-description">{currentDescription}</div>
-      <div className="cw-details">{currentDetails}</div>
-      <div className="cw-temperature">{currentTemp}{tempUnitsToDisplay}</div>
-      <div className="cw-feels-like">{currentFeelsLike}{tempUnitsToDisplay}</div>
-      <div className="cw-humidity">{currentHumidity}%</div>
-      <div className="cw-wind-speed">{currentWindSpeed} {windSpeedUnitsToDisplay}</div>
+      <div className="cw-card">
+        <div className="cw current-time">Last updated at: {dayYearMonthDate} at {time}</div>
+        <div className="cw city-name">{city}</div>
+        <img
+          alt="Current weather icon"
+          src={iconSource}
+          className="cw cw-icon"
+        />
+        <div className="cw cw-description">{currentDescription}</div>
+        <div className="cw cw-details">{currentDetails}</div>
+        <div className="cw cw-temperature">{currentTemp}{tempUnitsToDisplay}</div>
+        <div className="cw cw-feels-like">{currentFeelsLike}{tempUnitsToDisplay}</div>
+        <div className="cw cw-humidity">{currentHumidity}%</div>
+        <div className="cw cw-wind-speed">{currentWindSpeed} {windSpeedUnitsToDisplay}</div>
+      </div>
     </div>
   );
 }
