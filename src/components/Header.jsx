@@ -9,10 +9,6 @@ export default function Header({ getCurrentLocationWeather, changeUnits }) {
   return (
     <div className="header-container">
       <div className="logo-container">
-        <span className="logo-container--made-by">
-          Made by
-          <a href="https://github.com/heykzhao" target="_blank" rel="noreferrer"> heykzhao</a>
-        </span>
         <div className="logo-container--logo">
           <img
             alt="Sweater by ColourCreatype on freeicons.io"
