@@ -15,14 +15,7 @@ async function returnCoordinates() {
     const lon = location.coords.longitude;
     return { lat, lon };
   } catch (error) {
-    // eslint-disable-next-line no-alert
-    return alert(
-      `There was an error getting your location. 
-      We will now default to Chicago.
-
-      ${error.code}: ${error.message}
-      `,
-    );
+    return console.warn(error);
   }
 }
 
