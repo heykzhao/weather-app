@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
@@ -8,6 +10,7 @@ import './styles/App.css';
 
 // Import components
 import Loading from './components/Loading';
+import Error from './components/Error';
 import Header from './components/Header';
 import CurrentWeather from './components/CurrentWeather';
 import HourlyWeather from './components/HourlyWeather';
@@ -26,6 +29,9 @@ export default function App() {
   const [coordinates, setCoordinates] = useState('');
   const [units, setUnit] = useState('imperial');
   const [loading, setLoading] = useState(true);
+  const [errorLoading, setErrorLoading] = useState(false);
+  const [currentLocationError, setCurrentLocationError] = useState(false);
+  const [noLocationFoundError, setNoLocationFoundError] = useState(false);
 
   async function getCurrentLocationWeather() {
     try {
@@ -41,6 +47,7 @@ export default function App() {
         units,
       );
       setWeather(retreiveWeather);
+      setCurrentLocationError(false);
       setCoordinates({
         lat: currentCoordinates.lat,
         lon: currentCoordinates.lon,
@@ -48,26 +55,15 @@ export default function App() {
       setCity(currentCityName);
       setLoading(false);
     } catch {
-      const currentCoordinates = await getCityCoordinates('Chicago');
-      const retreiveWeather = await getCurrentCoordinatesWeather(
-        currentCoordinates.lat,
-        currentCoordinates.lon,
-        units,
-      );
-      setWeather(retreiveWeather);
-      setCoordinates({
-        lat: currentCoordinates.lat,
-        lon: currentCoordinates.lon,
-      });
-      setCity('Chicago, Illinois US');
+      setErrorLoading(true);
+      setCurrentLocationError(true);
       setLoading(false);
     }
   }
-  useState(() => getCurrentLocationWeather(), []);
+  useEffect(() => getCurrentLocationWeather(), []);
 
   async function changeUnits(e) {
     try {
-      console.log(e.target.name);
       const buttonName = e.target.name;
       let selectedUnit = '';
       if (buttonName === 'celsius') {
@@ -94,37 +90,67 @@ export default function App() {
         setWeather(retreiveNewUnitsWeather);
       }
     } catch (error) {
-      console.log(error);
+      setErrorLoading(true);
+      setLoading(false);
+    }
+  }
+
+  function LoadHandling({ loadingStatus, errorLoadingStatus }) {
+    if (loadingStatus === true) {
+      return (
+        <div className="data-loading">
+          <Header />
+          <div className="loading-spinner">
+            <Loading />
+          </div>
+          <Footer />
+        </div>
+      );
+    }
+    if (loadingStatus === false && errorLoadingStatus === false) {
+      return (
+        <div className="data-loaded">
+          <div className="header-current">
+            <Header
+              getCurrentLocationWeather={getCurrentLocationWeather}
+              changeUnits={changeUnits}
+            />
+            <CurrentWeather
+              item={weather.currentWeather}
+              city={city}
+              units={units}
+            />
+          </div>
+          <div className="non-current">
+            <HourlyWeather />
+            <DailyWeather />
+          </div>
+          <Footer />
+        </div>
+      );
+    }
+    if (loadingStatus === false && errorLoadingStatus === true) {
+      return (
+        <div className="error-loading">
+          <Header />
+          <div className="error-message">
+            <Error
+              currentLocationErrorStatus={currentLocationError}
+              // noLocationFoundErroStatusr={}
+            />
+          </div>
+          <Footer />
+        </div>
+      );
     }
   }
 
   return (
     <div className="app-container">
-      {loading === true
-        ? (
-          <div className="data-loading">
-            <Header />
-            <Loading />
-          </div>
-        )
-        : (
-          <div className="data-loaded">
-            <div className="header-current">
-              <Header
-                getCurrentLocationWeather={getCurrentLocationWeather}
-                changeUnits={changeUnits}
-              />
-              <CurrentWeather
-                item={weather.currentWeather}
-                city={city}
-                units={units}
-              />
-            </div>
-            <HourlyWeather />
-            <DailyWeather />
-          </div>
-        )}
-      <Footer />
+      <LoadHandling
+        loadingStatus={loading}
+        errorLoadingStatus={errorLoading}
+      />
     </div>
   );
 }
