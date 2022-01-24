@@ -3,16 +3,20 @@ input:focus, textarea:focus, select:focus{
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: black;
+  color: rgb(43, 42, 42);
+  font-style: italic;
+  font-weight: 300;
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: black;
-}
+  color: rgb(43, 42, 42);
+  font-style: italic;
+  font-weight: 300;}
 
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: black;
+  color: rgb(43, 42, 42);
+  font-style: italic;
   font-weight: 300;
 }
 
@@ -39,12 +43,6 @@ input:focus, textarea:focus, select:focus{
   border-width: 3px;
   margin: 10px 10px;
   padding: 5px 10px;
-}
-.logo-container--made-by {
-  font-size: 12px;
-  font-weight: 400;
-  font-style: italic;
-  margin: 2px 0px;
 }
 .logo-container--made-by > a {
   text-decoration: none;
@@ -126,8 +124,8 @@ input:focus, textarea:focus, select:focus{
   height: 90%;
   width: 100%;
   padding: 0px 0px 0px 10px;
-  color: rgb(0, 0, 0);
   font-weight: 900;
+  color: black;
   font-size: 20px;
 }
 .search--button {
