@@ -1,0 +1,53 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.nameplate {
+  display: flex;
+  background-color: white;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 217, 0);
+}
+
+.copyright {
+  display: inline-block;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+.github-logo {
+  display: inline-block;
+  margin-left: 5px;
+  height: 20px;
+}
+
+@media only screen and (max-width: 850px) {
+  .header-container {
+      flex-direction: column;
+      padding-top: 22px;
+      padding-bottom: 22px;
+  }
+  .header-logo {
+      padding-left: 0px;
+      font-size: 20px;
+  }
+  .header-logo-capitalize {
+      font-size: 30px;
+  }
+  .header-links {
+      padding-top: 20px;
+      padding-right: 0px;
+  }
+  .header-link {
+      padding-left: 5px;
+      padding-right: 5px;
+      font-size: 15px;
+  }
+  .copyright {
+      font-size: 12px;
+  }
+  .github-logo {
+      height: 15px;
+  }
+}
