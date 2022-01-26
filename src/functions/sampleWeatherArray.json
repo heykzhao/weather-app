@@ -1,0 +1,352 @@
+{
+  "currentWeather": {
+      "currentTime": "",
+      "currentTemp": null,
+      "currentFeelsLike": null,
+      "currentHumidity": null,
+      "currentWindSpeed": null,
+      "currentDescription": "",
+      "currentDetails": "",
+      "currentIcon": "01d"
+  },
+  "hourlyWeather": [
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      },
+      {
+          "date": null,
+          "temperature": null,
+          "description": "",
+          "icon": ""
+      }
+  ],
+  "dailyWeather": [
+      {
+          "date": null,
+          "minTemperature": null,
+          "maxTemperature": null,
+          "icon": ""
+      },
+      {
+          "date": null,
+          "minTemperature": null,
+          "maxTemperature": null,
+          "icon": ""
+      },
+      {
+          "date": null,
+          "minTemperature": null,
+          "maxTemperature": null,
+          "icon": ""
+      },
+      {
+          "date": null,
+          "minTemperature": null,
+          "maxTemperature": null,
+          "icon": ""
+      },
+      {
+          "date": null,
+          "minTemperature": null,
+          "maxTemperature": null,
+          "icon": ""
+      },
+      {
+          "date": null,
+          "minTemperature": null,
+          "maxTemperature": null,
+          "icon": ""
+      },
+      {
+          "date": null,
+          "minTemperature": null,
+          "maxTemperature": null,
+          "icon": ""
+      },
+      {
+          "date": null,
+          "minTemperature": null,
+          "maxTemperature": null,
+          "icon": ""
+      }
+  ]
+}
