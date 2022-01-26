@@ -2,10 +2,15 @@
 import React from 'react';
 import '../styles/Header.css';
 import sweaterIcon from '../images/sweater.png';
-import searchIcon from '../images/search.png';
 import currentLocationIcon from '../images/current-location.png';
 
-export default function Header({ getCurrentLocationWeather, changeUnits }) {
+export default function Header({
+  getCurrentLocationWeather,
+  changeUnits,
+  handleChange,
+  handleSubmit,
+  searchQuery,
+}) {
   return (
     <div className="header-container">
       <div className="logo-container">
@@ -35,18 +40,21 @@ export default function Header({ getCurrentLocationWeather, changeUnits }) {
                 title="Get current location."
               />
             </button>
-            <input
-              name="search-city"
-              type="text"
-              placeholder="Search City"
-              className="search--input"
-            />
-            <button type="button" className="search--button">
-              <img
-                alt="Search icon by Free Preloaders on freeicons.io"
-                src={searchIcon}
+            <form onSubmit={handleSubmit}>
+              <input
+                name="search-city"
+                value={searchQuery}
+                type="text"
+                placeholder="Search City"
+                className="search--input"
+                onChange={handleChange}
               />
-            </button>
+              <input
+                type="submit"
+                className="search--button"
+                value=""
+              />
+            </form>
           </div>
         </div>
         <div className="units-container">

@@ -7,17 +7,18 @@ import '../styles/CurrentWeather.css';
 
 export default function CurrentWeather({ item, city, units }) {
   const {
-    currentDescription,
-    currentDetails,
+    currentTime,
+    currentTemp,
     currentFeelsLike,
     currentHumidity,
-    currentTemp,
-    currentTime,
     currentWindSpeed,
+    currentDescription,
+    currentDetails,
     currentIcon,
   } = item;
   let tempUnitsToDisplay = '';
   let windSpeedUnitsToDisplay = '';
+
   if (units === 'metric') {
     tempUnitsToDisplay = '°C';
     windSpeedUnitsToDisplay = 'meters/sec';
@@ -25,6 +26,7 @@ export default function CurrentWeather({ item, city, units }) {
     tempUnitsToDisplay = '°F';
     windSpeedUnitsToDisplay = 'miles/hour';
   }
+
   const date = new Date(currentTime);
   const dayYearMonthDate = date.toLocaleString('en-us', {
     weekday: 'long', year: 'numeric', month: 'long', date: 'numeric',

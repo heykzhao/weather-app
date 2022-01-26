@@ -69,7 +69,6 @@ export async function getCurrentCoordinatesWeather(lat, lon, units) {
       hourlyWeather,
       dailyWeather,
     };
-
     return allWeather;
   } catch (error) {
     return console.warn(error);

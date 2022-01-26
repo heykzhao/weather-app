@@ -6,7 +6,8 @@
         "currentHumidity": null,
         "currentWindSpeed": null,
         "currentDescription": "",
-        "currentDetails": ""
+        "currentDetails": "",
+        "currentIcon": "01d"
     },
     "hourlyWeather": [
         {

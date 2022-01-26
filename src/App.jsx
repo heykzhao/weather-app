@@ -24,14 +24,20 @@ import getCityNameByCoordinates from './functions/getCityName';
 import emptyWeatherArray from './functions/emptyWeatherArray.json';
 
 export default function App() {
-  const [weather, setWeather] = useState(emptyWeatherArray);
-  const [city, setCity] = useState('');
-  const [coordinates, setCoordinates] = useState('');
-  const [units, setUnit] = useState('imperial');
-  const [loading, setLoading] = useState(true);
-  const [errorLoading, setErrorLoading] = useState(false);
-  const [currentLocationError, setCurrentLocationError] = useState(false);
-  const [noLocationFoundError, setNoLocationFoundError] = useState(false);
+  const [allData, setAllData] = useState({
+    weather: emptyWeatherArray,
+    city: '',
+    coordinates: { lat: '', lon: '' },
+    units: 'imperial',
+    searchQuery: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [errorStatus, setErrorStatus] = useState({
+    errorLoading: false,
+    currentLocationError: false,
+    noLocationFoundError: false,
+    unitsError: false,
+  });
 
   async function getCurrentLocationWeather() {
     try {
@@ -44,19 +50,31 @@ export default function App() {
       const retreiveWeather = await getCurrentCoordinatesWeather(
         currentCoordinates.lat,
         currentCoordinates.lon,
-        units,
+        allData.units,
       );
-      setWeather(retreiveWeather);
-      setCurrentLocationError(false);
-      setCoordinates({
-        lat: currentCoordinates.lat,
-        lon: currentCoordinates.lon,
-      });
-      setCity(currentCityName);
+      setAllData((prevValue) => ({
+        ...prevValue,
+        weather: retreiveWeather,
+        city: currentCityName,
+        coordinates: { lat: currentCoordinates.lat, lon: currentCoordinates.lon },
+      }));
+      setErrorStatus((prevValue) => ({
+        ...prevValue,
+        errorLoading: false,
+        currentLocationError: false,
+        noLocationFoundError: false,
+        unitsError: false,
+      }));
       setLoading(false);
     } catch {
-      setErrorLoading(true);
-      setCurrentLocationError(true);
+      setLoading(true);
+      setErrorStatus((prevValue) => ({
+        ...prevValue,
+        errorLoading: true,
+        currentLocationError: false,
+        noLocationFoundError: false,
+        unitsError: false,
+      }));
       setLoading(false);
     }
   }
@@ -68,38 +86,72 @@ export default function App() {
       let selectedUnit = '';
       if (buttonName === 'celsius') {
         setLoading(true);
-        setUnit('metric');
         selectedUnit = 'metric';
         const retreiveNewUnitsWeather = await getCurrentCoordinatesWeather(
-          coordinates.lat,
-          coordinates.lon,
+          allData.coordinates.lat,
+          allData.coordinates.lon,
           selectedUnit,
         );
-        setWeather(retreiveNewUnitsWeather);
+        setAllData((prevValue) => ({
+          ...prevValue,
+          weather: retreiveNewUnitsWeather,
+          units: 'metric',
+        }));
         setLoading(false);
       } else if (buttonName === 'fahrenheit') {
         setLoading(true);
-        setUnit('imperial');
         selectedUnit = 'imperial';
         const retreiveNewUnitsWeather = await getCurrentCoordinatesWeather(
-          coordinates.lat,
-          coordinates.lon,
+          allData.coordinates.lat,
+          allData.coordinates.lon,
           selectedUnit,
         );
+        setAllData((prevValue) => ({
+          ...prevValue,
+          weather: retreiveNewUnitsWeather,
+          units: 'imperial',
+        }));
         setLoading(false);
-        setWeather(retreiveNewUnitsWeather);
       }
     } catch (error) {
-      setErrorLoading(true);
+      setErrorStatus((prevValue) => ({
+        ...prevValue,
+        errorLoading: true,
+        currentLocationError: false,
+        noLocationFoundError: false,
+        unitsError: true,
+      }));
       setLoading(false);
     }
+  }
+
+  function handleChange(e) {
+    setAllData((prevValue) => ({
+      ...prevValue,
+      searchQuery: e.target.value,
+    }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(allData.searchQuery);
+    setAllData((prevValue) => ({
+      ...prevValue,
+      searchQuery: '',
+    }));
   }
 
   function LoadHandling({ loadingStatus, errorLoadingStatus }) {
     if (loadingStatus === true) {
       return (
         <div className="data-loading">
-          <Header />
+          <Header
+            getCurrentLocationWeather={getCurrentLocationWeather}
+            changeUnits={changeUnits}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            searchQuery={allData.searchQuery}
+          />
           <div className="loading-spinner">
             <Loading />
           </div>
@@ -114,11 +166,14 @@ export default function App() {
             <Header
               getCurrentLocationWeather={getCurrentLocationWeather}
               changeUnits={changeUnits}
+              handleSubmit={handleSubmit}
+              handleChange={handleChange}
+              searchQuery={allData.searchQuery}
             />
             <CurrentWeather
-              item={weather.currentWeather}
-              city={city}
-              units={units}
+              item={allData.weather.currentWeather}
+              city={allData.city}
+              units={allData.units}
             />
           </div>
           <div className="non-current">
@@ -132,11 +187,18 @@ export default function App() {
     if (loadingStatus === false && errorLoadingStatus === true) {
       return (
         <div className="error-loading">
-          <Header />
+          <Header
+            getCurrentLocationWeather={getCurrentLocationWeather}
+            changeUnits={changeUnits}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            searchQuery={allData.searchQuery}
+          />
           <div className="error-message">
             <Error
-              currentLocationErrorStatus={currentLocationError}
-              // noLocationFoundErroStatusr={}
+              currentLocationErrorStatus={errorStatus.currentLocationError}
+              noLocationFoundErrorStatus={errorStatus.noLocationFoundError}
+              unitsErrorStatus={errorStatus.unitsError}
             />
           </div>
           <Footer />
@@ -149,7 +211,7 @@ export default function App() {
     <div className="app-container">
       <LoadHandling
         loadingStatus={loading}
-        errorLoadingStatus={errorLoading}
+        errorLoadingStatus={errorStatus.errorLoading}
       />
     </div>
   );
