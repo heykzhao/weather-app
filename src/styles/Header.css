@@ -1,6 +1,12 @@
 input:focus, textarea:focus, select:focus{
   outline: none;
 }
+form {
+  display: flex;
+  flex-direction: row;
+  border: 3px black;
+  border-bottom-style: solid;
+}
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: rgb(43, 42, 42);
@@ -43,10 +49,6 @@ input:focus, textarea:focus, select:focus{
   border-width: 3px;
   margin: 10px 10px;
   padding: 5px 10px;
-}
-.logo-container--made-by > a {
-  text-decoration: none;
-  color: inherit;
 }
 .logo-container--logo {
   display: flex;
@@ -98,7 +100,6 @@ input:focus, textarea:focus, select:focus{
 .unit-selector-separation {
   margin: 0px 5px 0px 7px;
 }
-
 .search-container {
   display: flex;
   flex-direction: row;
@@ -113,8 +114,6 @@ input:focus, textarea:focus, select:focus{
   justify-content: center;
   width: 100%;
   height: 100%;
-  border: 3px black;
-  border-bottom-style: solid;
   background-color: transparent;
 }
 .search--input {
@@ -123,7 +122,6 @@ input:focus, textarea:focus, select:focus{
   background-color: transparent;
   height: 90%;
   width: 100%;
-  padding: 0px 0px 0px 10px;
   font-weight: 900;
   color: black;
   font-size: 20px;
@@ -131,16 +129,16 @@ input:focus, textarea:focus, select:focus{
 .search--button {
   align-items: center;
   border-style: none;
-  background-color: transparent;
-  height: 90%;
-  cursor: pointer;
-}
-.search--button > img {
   height: 25px;
+  width: 25px;
+  background: url('../images/search.png') no-repeat scroll;
+  background-size: 20px;
+  cursor: pointer;
 }
 .get-current-location {
   background-color: transparent;
   cursor: pointer;
+  margin-right: 5px;
 }
 .current-location-icon {
   background-color: transparent;
